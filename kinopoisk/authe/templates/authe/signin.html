@@ -1,0 +1,18 @@
+{% extends 'authe/base.html' %}
+{% load static %}
+
+{% block static_links %}
+<link rel="stylesheet" href="{% static 'authe/styles/form.css' %}">
+{% endblock %}
+
+{% block form_div %}
+<div class="form-wrapper">
+    <form action="{% url 'authe:signin' %}" method="POST" class="form d-flex flex-column align-items-center">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-dark">
+            Войти
+        </button>
+    </form>
+</div>
+{% endblock %}
