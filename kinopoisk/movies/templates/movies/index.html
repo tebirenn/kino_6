@@ -1,0 +1,42 @@
+{% extends 'movies/base.html' %}
+
+{% block main %}
+<section class="main index-main">
+    <div class="main-content">
+        <div class="menu">
+            <a href="" class="btn btn-light mb-2">Home</a>
+            <a href="" class="btn btn-light mb-2">Create</a>
+            <a href="" class="btn btn-light mb-2">Edit</a>
+        </div>
+        <div class="content">
+            <h1 class="mb-3">Все фильмы</h1>
+            {% for movie in movies %}
+                <div class="movie--item mt-4 pt-4">
+                    <div class="movie-img">
+                        <img src="{{ movie.poster.url }}" alt="">
+                    </div>
+                    <div class="movie-info">
+                        <p>{{ movie.title_ru }}</p>
+                        <p>{{ movie.title_orig }}, {{ movie.publish_year }}, {{ movie.timing }} мин.</p>
+                        <p>{{ movie.country }} * {{ movie.genre }} Режиссёр: {{ movie.director }}</p>
+                    </div>
+                    <div class="movie-btns">
+                        {% if request.user and request.user.is_staff %}
+                        <div>
+                            <a href="" class="btn btn-secondary mb-1">Редактровать</a>
+                            <a href="" class="btn btn-secondary mb-1">Удалить</a>
+                        </div>
+                        {% else %}
+                        <p>8.5</p>
+                        <div>
+                            <a href="" class="btn btn-secondary mb-1">Буду смотреть</a>
+                            <a href="" class="btn btn-secondary mb-1">Избранные</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
