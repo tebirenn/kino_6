@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from re import search
 
 from .models import User
 from .forms import UserSignInForm, UserSignUpForm
@@ -26,13 +27,17 @@ class SignIn(View):
         # if form.is_valid():
             try:
                 user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
-                login(request, user)
-                return redirect(reverse_lazy('movies:index'))
+                if user:
+                    login(request, user)
+                    return redirect(reverse_lazy('movies:index'))
+                else:
+                    context = { 'form': form, 'error': 1 }
+                    return render(request, 'authe/signin.html', context=context)
             except:
-                context = { 'form': form, 'error': 1 }
+                context = { 'form': form, 'error': 2 }
                 return render(request, 'authe/signin.html', context=context) 
         else:
-            context = { 'form': form, 'error': 2 }
+            context = { 'form': form, 'error': 3 }
             return render(request, 'authe/signin.html', context=context) 
     
 
@@ -51,11 +56,23 @@ class SignUp(View):         # session based
         form = UserSignUpForm(request.POST, request.FILES)
 
         if form.is_valid():
-            form.save()
-            return redirect(reverse_lazy('authe:signin'))
+            data = form.cleaned_data
+            password = data.pop('password')
+            password_pattern = r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$'
+            if search(password_pattern, password):
+                user = User.objects.create(
+                    image=data['image'],
+                    username=data['username'],
+                    email=data['email'],
+                )
+                user.set_password(password)
+                user.save()
+                return redirect(reverse_lazy('authe:signin'))
+            else:
+                context = {'form': form, 'error': 1}
+                return render(request, 'authe/signup.html', context=context)
         else:
-            context = {'form': form}
-
+            context = {'form': form, 'error': 2}
             return render(request, 'authe/signup.html', context=context)
 
    

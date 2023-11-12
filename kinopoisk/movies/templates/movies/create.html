@@ -1,11 +1,15 @@
 {% extends 'movies/base.html' %}
 
 {% block main %}
-<div class="form-wrapper">
-    <form action="" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-warning">Создать</button>
-    </form>
-</div>
+<section class="main edit-main">
+    <div class="main-content">
+        <div class="form-wrapper">
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-warning">Создать</button>
+            </form>
+        </div>
+    </div>
+</section>
 {% endblock %}

@@ -4,8 +4,8 @@
 <section class="main index-main">
     <div class="main-content">
         <div class="menu">
-            <a href="" class="btn btn-light mb-2">Home</a>
-            <a href="" class="btn btn-light mb-2">Create</a>
+            <a href="{% url 'movies:index' %}" class="btn btn-light mb-2">Home</a>
+            <a href="{% url 'movies:create' %}" class="btn btn-light mb-2">Create</a>
             <a href="" class="btn btn-light mb-2">Edit</a>
         </div>
         <div class="content">
@@ -16,15 +16,15 @@
                         <img src="{{ movie.poster.url }}" alt="">
                     </div>
                     <div class="movie-info">
-                        <p>{{ movie.title_ru }}</p>
+                        <a href="{% url 'movies:detail' movie.id %}">{{ movie.title_ru }}</a>
                         <p>{{ movie.title_orig }}, {{ movie.publish_year }}, {{ movie.timing }} мин.</p>
                         <p>{{ movie.country }} * {{ movie.genre }} Режиссёр: {{ movie.director }}</p>
                     </div>
                     <div class="movie-btns">
                         {% if request.user and request.user.is_staff %}
                         <div>
-                            <a href="" class="btn btn-secondary mb-1">Редактровать</a>
-                            <a href="" class="btn btn-secondary mb-1">Удалить</a>
+                            <a href="{% url 'movies:edit' movie.id %}" class="btn btn-secondary mb-1">Редактровать</a>
+                            <a href="{% url 'movies:delete' movie.id %}" class="btn btn-secondary mb-1">Удалить</a>
                         </div>
                         {% else %}
                         <p>8.5</p>

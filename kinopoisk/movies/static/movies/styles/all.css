@@ -73,3 +73,46 @@ header {
     display: flex;
     flex-direction: column;
 }
+
+.form-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.form-wrapper form {
+    width: 60%;
+}
+.detail-info {
+    display: flex;
+    padding: 0 30px;
+    width: 100%;
+    justify-content: space-between;
+}
+.detail-poster {
+    width: 25%;
+}
+.detail-detail {
+    width: 70%;
+}
+
+.movie-info--item {
+    display: flex;
+}
+.movie-info--item p:first-child {
+    width: 200px;
+}
+
+.detail-content {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    margin-top: 80px;
+}
+
+.detail-trailer,
+.detail-desc {
+    padding: 0 30px;
+    width: 80%;
+}

@@ -27,6 +27,7 @@ class Director(models.Model):
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
+    
 class Movie(models.Model):
     poster = models.ImageField(blank=True, null=True, upload_to=uniq_name_upload)
     trailer_url = models.URLField()
@@ -42,3 +43,18 @@ class Movie(models.Model):
 
     def __str__(self):
         return self.title_orig
+    
+    def to_json(self):
+        return {
+            'poster': self.poster,
+            'trailer_url': self.trailer_url,
+            'title_ru': self.title_ru,
+            'title_orig': self.title_orig,
+            'description': self.description,
+            'publish_year': self.publish_year,
+            'premier_date': self.premier_date,
+            'country': self.country,
+            'genre': self.genre,
+            'director': self.director,
+            'timing': self.timing,
+        }

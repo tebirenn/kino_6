@@ -1,0 +1,54 @@
+{% extends 'movies/base.html' %}
+
+{% block main %}
+<section class="main detail-main">
+    <div class="detail-content">
+        <div class="detail-info">
+            <div class="detail-poster d-flex flex-column">
+                <img src="{{ movie.poster.url }}" alt="">
+                <button class="btn btn-secondary mt-4">В избранные</button>
+            </div>
+            <div class="detail-detail">
+                <h1>{{ movie.title_ru }} ({{ movie.publish_year }})</h1>
+                <h5>{{ movie.title_orig }}</h5>
+                <button class="btn btn-secondary mt-3">Буду смотреть</button>
+                <h3 class="mt-5">О фильме</h3>
+                <div class="movie-info-details">
+                    <span class="movie-info--item">
+                        <p>Год производства</p>
+                        <p>{{ movie.publish_year }}</p>
+                    </span>
+                    <span class="movie-info--item">
+                        <p>Страна</p>
+                        <p>{{ movie.country.name }}</p>
+                    </span>
+                    <span class="movie-info--item">
+                        <p>Жанр</p>
+                        <p>{{ movie.genre.name }}</p>
+                    </span>
+                    <span class="movie-info--item">
+                        <p>Режиссёр</p>
+                        <p>{{ movie.director }}</p>
+                    </span>
+                    <span class="movie-info--item">
+                        <p>Премьера в мире</p>
+                        <p>{{ movie.premier_date }}</p>
+                    </span>
+                    <span class="movie-info--item">
+                        <p>Время</p>
+                        <p>{{ movie.timing }} мин.</p>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="detail-desc mt-3">
+            <h3>О фильме</h3>
+            <p>{{ movie.description }}</p>
+        </div>
+        <div class="detail-trailer py-5">
+            <h3>Трейлер фильма</h3>
+            <iframe width="100%" height="500px" src="{{ movie.trailer_url }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+    </div>
+</section>
+{% endblock %}
