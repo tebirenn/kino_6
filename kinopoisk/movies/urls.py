@@ -10,4 +10,5 @@ urlpatterns = [
     path('edit/<int:movie_id>/', views.EditMovie.as_view(), name='edit'),
     path('detail/<int:movie_id>/', views.MovieDetailView.as_view(), name='detail'),
     path('delete/<int:movie_id>/', views.DeleteFilmView.as_view(), name='delete'),
+    path('rate/', views.RateView.as_view(), name='rate'),
 ]

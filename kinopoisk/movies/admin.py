@@ -14,7 +14,11 @@ class DirectorAdmin(admin.ModelAdmin):
 class MovieAdmin(admin.ModelAdmin):
     list_display = ('id', 'title_ru')
 
+class RateAdmin(admin.ModelAdmin):
+    list_display = ('id', 'text')
+
 admin.site.register(Country, CountryAdmin)
 admin.site.register(Genre, GenreAdmin)
 admin.site.register(Director, DirectorAdmin)
 admin.site.register(Movie, MovieAdmin)
+admin.site.register(Rate, RateAdmin)

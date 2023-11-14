@@ -11,6 +11,7 @@ header {
     top: 0;
     left: 0;
     right: 0;
+    z-index: 10;
 }
 
 .header-search {
@@ -115,4 +116,43 @@ header {
 .detail-desc {
     padding: 0 30px;
     width: 80%;
+}
+
+.ratings {
+    padding: 0 30px;
+}
+
+.star--item {
+    filter: invert(87%) sepia(9%) saturate(5%) hue-rotate(330deg) brightness(93%) contrast(93%);
+    width: 40px;
+    cursor: pointer;
+}
+
+.active-star {
+    filter: invert(36%) sepia(97%) saturate(2405%) hue-rotate(1deg) brightness(102%) contrast(105%);
+}
+
+.rate--item {
+    background-color: #ebf7eb;
+    padding: 20px;
+
+}
+.rate--item > span {
+    display: flex;
+    border-bottom: 0.5px solid #bcbcbc;
+    margin-bottom: 20px;
+    align-items: center;
+}
+.rate--item > span p {
+    margin-bottom: 0;
+}
+.rate--item > span .rate-username {
+    font-weight: 700;
+    width: 200px;
+}
+
+.rate-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
 }

@@ -1,6 +1,8 @@
 from django.db import models
 import uuid
 
+from authe.models import User
+
 def uniq_name_upload(instance, filename):
     new_file_name = f"{uuid.uuid4()}.{filename.split('.')[-1]}"
     return f'posters/{new_file_name}'
@@ -58,3 +60,10 @@ class Movie(models.Model):
             'director': self.director,
             'timing': self.timing,
         }
+
+
+class Rate(models.Model):
+    count = models.IntegerField(null=False)
+    text = models.TextField()
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)

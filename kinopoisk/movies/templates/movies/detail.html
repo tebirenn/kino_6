@@ -1,4 +1,5 @@
 {% extends 'movies/base.html' %}
+{% load static %}
 
 {% block main %}
 <section class="main detail-main">
@@ -9,7 +10,7 @@
                 <button class="btn btn-secondary mt-4">В избранные</button>
             </div>
             <div class="detail-detail">
-                <h1>{{ movie.title_ru }} ({{ movie.publish_year }})</h1>
+                <h1>{{ movie.title_ru }} ({{ movie.publish_year }}) {{avg_rate}}</h1>
                 <h5>{{ movie.title_orig }}</h5>
                 <button class="btn btn-secondary mt-3">Буду смотреть</button>
                 <h3 class="mt-5">О фильме</h3>
@@ -49,6 +50,54 @@
             <h3>Трейлер фильма</h3>
             <iframe width="100%" height="500px" src="{{ movie.trailer_url }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
+        <div class="ratings">
+            <h3 class="mb-2">Рецензии зрителей</h3>
+            {% if request.user and request.user.is_authenticated %}
+                <form action="" onsubmit="sendRate(event)">
+                    {% csrf_token %}
+                    <div class="stars-wrapper">
+                        <img src="{% static 'movies/images/star_icon.svg' %}" alt="star" class="star--item" onclick="chooseStar(1)">
+                        <img src="{% static 'movies/images/star_icon.svg' %}" alt="star" class="star--item" onclick="chooseStar(2)">
+                        <img src="{% static 'movies/images/star_icon.svg' %}" alt="star" class="star--item" onclick="chooseStar(3)">
+                        <img src="{% static 'movies/images/star_icon.svg' %}" alt="star" class="star--item" onclick="chooseStar(4)">
+                        <img src="{% static 'movies/images/star_icon.svg' %}" alt="star" class="star--item" onclick="chooseStar(5)">
+                        <img src="{% static 'movies/images/star_icon.svg' %}" alt="star" class="star--item" onclick="chooseStar(6)">
+                        <img src="{% static 'movies/images/star_icon.svg' %}" alt="star" class="star--item" onclick="chooseStar(7)">
+                        <img src="{% static 'movies/images/star_icon.svg' %}" alt="star" class="star--item" onclick="chooseStar(8)">
+                        <img src="{% static 'movies/images/star_icon.svg' %}" alt="star" class="star--item" onclick="chooseStar(9)">
+                        <img src="{% static 'movies/images/star_icon.svg' %}" alt="star" class="star--item" onclick="chooseStar(10)">
+                    </div>
+                    <textarea name="" id="rateText" placeholder="Напишите рецензию" class="form-control mt-3" rows="5"></textarea>
+                    <input type="hidden" name="movie_id" id="movie_id" value="{{ movie.id }}">
+                    <input type="hidden" name="user_id" id="user_id" value="{{ request.user.id }}">
+                    <button type="submit" class="mt-2 btn btn-secondary">Отправить</button>
+                </form>
+                
+            {% else %}
+                <p>Для того чтобы оставить рецензию <a href="{% url 'authe:signin' %}">войдите</a> или <a href="{% url 'authe:signup' %}">зарегистрируйтесь</a></p>
+            {% endif %}
+
+            <div class="user-rates mt-4">
+                {% for rate in rates %}
+                    <div class="rate--item mb-3">
+                        <span>
+                            {% if rate.author.image %}
+                            <img src="{{ rate.author.image.url }}" alt="" class="rate-avatar me-2 mb-2">
+                            {% endif %}
+                            <p class="rate-username">{{ rate.author.username }}</p>
+                            <p>{{ rate.count }} / 10</p>
+                        </span>
+                        <p>
+                            {{ rate.text }}
+                        </p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 </section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'movies/scripts/rate.js' %}"></script>
 {% endblock %}
