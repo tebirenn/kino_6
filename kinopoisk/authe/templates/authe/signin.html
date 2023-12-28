@@ -1,5 +1,6 @@
 {% extends 'authe/base.html' %}
 {% load static %}
+{% load socialaccount %}
 
 {% block static_links %}
 <link rel="stylesheet" href="{% static 'authe/styles/form.css' %}">
@@ -13,6 +14,11 @@
         <button type="submit" class="btn btn-dark">
             Войти
         </button>
+
+        <a href="{% provider_login_url 'google'%}?next=/" class="btn btn-dark mt-2">
+            Login with Google
+        </a>
+
         <p class="mt-3">Нет аккаунта? <a href="{% url 'authe:signup' %}">Зарегистрируйтесь</a></p>
         {% if error %}
             Error: {{ error }}

@@ -79,8 +79,11 @@ class SignUp(View):         # session based
 @method_decorator(login_required, name='get')
 class Profile(View):
     def get(self, request):
+        context = {
+            'user': request.user,
+        }
 
-        return render(request, 'authe/profile.html')
+        return render(request, 'authe/profile.html', context=context)
     
 
 def signout(request):
