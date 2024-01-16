@@ -94,7 +94,10 @@ def avg_rate(rates):
     for rate in rates:
         res += rate.count
     
-    return f'{res / len(rates):.1f}'
+    try:
+        return f'{res / len(rates):.1f}'
+    except:
+        return 0
 
 class MovieDetailView(View):
     def get(self, request, movie_id):
