@@ -1,0 +1,158 @@
+
+
+header {
+    background-color: #000;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 8%;
+    align-items: center;
+    height: 80px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+
+.header-search {
+    width: 30%;
+}
+
+.header-btns a {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.main {
+    min-height: calc(100vh - 80px);
+    padding: 0 8%;
+    background-color: #f4f4f4;
+}
+
+.main-content {
+    background-color: #fff;
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    margin-top: 80px;
+}
+
+.index-main .menu {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 20%;
+    border-right: 0.5px solid #c3c3c3;
+}
+
+.index-main .content {
+    width: 80%;
+    padding: 20px;
+}
+
+.movie--item img {
+    width: 80%;
+}
+
+.movie--item {
+    display: flex;
+    border-top: 1px solid #dedede;
+}
+
+.movie--item .movie-img {
+    width: 12%;
+}
+.movie--item .movie-info {
+    width: 60%;
+}
+.movie--item .movie-btns {
+    width: 28%;
+}
+
+.movie--item .movie-btns div {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.form-wrapper form {
+    width: 60%;
+}
+.detail-info {
+    display: flex;
+    padding: 0 30px;
+    width: 100%;
+    justify-content: space-between;
+}
+.detail-poster {
+    width: 25%;
+}
+.detail-detail {
+    width: 70%;
+}
+
+.movie-info--item {
+    display: flex;
+}
+.movie-info--item p:first-child {
+    width: 200px;
+}
+
+.detail-content {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    margin-top: 80px;
+}
+
+.detail-trailer,
+.detail-desc {
+    padding: 0 30px;
+    width: 80%;
+}
+
+.ratings {
+    padding: 0 30px;
+}
+
+.star--item {
+    filter: invert(87%) sepia(9%) saturate(5%) hue-rotate(330deg) brightness(93%) contrast(93%);
+    width: 40px;
+    cursor: pointer;
+}
+
+.active-star {
+    filter: invert(36%) sepia(97%) saturate(2405%) hue-rotate(1deg) brightness(102%) contrast(105%);
+}
+
+.rate--item {
+    background-color: #ebf7eb;
+    padding: 20px;
+
+}
+.rate--item > span {
+    display: flex;
+    border-bottom: 0.5px solid #bcbcbc;
+    margin-bottom: 20px;
+    align-items: center;
+}
+.rate--item > span p {
+    margin-bottom: 0;
+}
+.rate--item > span .rate-username {
+    font-weight: 700;
+    width: 200px;
+}
+
+.rate-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+}
