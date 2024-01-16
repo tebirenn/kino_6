@@ -22,7 +22,7 @@ const sendRate = (e) => {
     const userId = document.querySelector('#user_id').value;
     
     axios.post(
-        'http://localhost:8000/rate/',
+        'http://164.92.254.223/rate/',
         {
             movie_id: movieId,
             text: rateText,
